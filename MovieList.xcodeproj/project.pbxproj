@@ -16,6 +16,10 @@
 		4627A6C224367B2F00E1C3B7 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627A6C124367B2F00E1C3B7 /* Connector.swift */; };
 		4627A6C524367D6300E1C3B7 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627A6C424367D6300E1C3B7 /* MockURLSession.swift */; };
 		4627A6C724367DD700E1C3B7 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627A6C624367DD700E1C3B7 /* MockURLSessionDataTask.swift */; };
+		4637D9D2243E7C7800E854F6 /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637D9D1243E7C7800E854F6 /* MovieTests.swift */; };
+		4637D9D4243E7DCA00E854F6 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637D9D3243E7DCA00E854F6 /* Movie.swift */; };
+		4637D9D6243E7E5A00E854F6 /* MovieListWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637D9D5243E7E5A00E854F6 /* MovieListWorkerTests.swift */; };
+		4637D9D8243E868100E854F6 /* MovieListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637D9D7243E868100E854F6 /* MovieListWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,10 @@
 		4627A6C124367B2F00E1C3B7 /* Connector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		4627A6C424367D6300E1C3B7 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		4627A6C624367DD700E1C3B7 /* MockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionDataTask.swift; sourceTree = "<group>"; };
+		4637D9D1243E7C7800E854F6 /* MovieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
+		4637D9D3243E7DCA00E854F6 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		4637D9D5243E7E5A00E854F6 /* MovieListWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListWorkerTests.swift; sourceTree = "<group>"; };
+		4637D9D7243E868100E854F6 /* MovieListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,13 +91,10 @@
 		4627A69A2436768F00E1C3B7 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				4637D9CE243E7C6300E854F6 /* Models */,
+				4637D9CD243E7C5C00E854F6 /* Scenes */,
 				4627A6C024367B1F00E1C3B7 /* Networking */,
-				4627A69B2436768F00E1C3B7 /* AppDelegate.swift */,
-				4627A69D2436768F00E1C3B7 /* SceneDelegate.swift */,
-				4627A6A12436768F00E1C3B7 /* Main.storyboard */,
-				4627A6A42436769200E1C3B7 /* Assets.xcassets */,
-				4627A6A62436769200E1C3B7 /* LaunchScreen.storyboard */,
-				4627A6A92436769200E1C3B7 /* Info.plist */,
+				4637D9CC243E7C3100E854F6 /* Base */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -97,6 +102,8 @@
 		4627A6B4243676CB00E1C3B7 /* MovieListTests */ = {
 			isa = PBXGroup;
 			children = (
+				4637D9D0243E7C7000E854F6 /* Models */,
+				4637D9CF243E7C6B00E854F6 /* Scenes */,
 				4627A6BD243677EC00E1C3B7 /* Networking */,
 				4627A6B7243676CB00E1C3B7 /* Info.plist */,
 			);
@@ -127,6 +134,51 @@
 				4627A6C624367DD700E1C3B7 /* MockURLSessionDataTask.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		4637D9CC243E7C3100E854F6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4627A69B2436768F00E1C3B7 /* AppDelegate.swift */,
+				4627A69D2436768F00E1C3B7 /* SceneDelegate.swift */,
+				4627A6A12436768F00E1C3B7 /* Main.storyboard */,
+				4627A6A42436769200E1C3B7 /* Assets.xcassets */,
+				4627A6A62436769200E1C3B7 /* LaunchScreen.storyboard */,
+				4627A6A92436769200E1C3B7 /* Info.plist */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4637D9CD243E7C5C00E854F6 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4637D9D7243E868100E854F6 /* MovieListWorker.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4637D9CE243E7C6300E854F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4637D9D3243E7DCA00E854F6 /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4637D9CF243E7C6B00E854F6 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4637D9D5243E7E5A00E854F6 /* MovieListWorkerTests.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4637D9D0243E7C7000E854F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4637D9D1243E7C7800E854F6 /* MovieTests.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +285,8 @@
 			files = (
 				4627A6C224367B2F00E1C3B7 /* Connector.swift in Sources */,
 				4627A69C2436768F00E1C3B7 /* AppDelegate.swift in Sources */,
+				4637D9D4243E7DCA00E854F6 /* Movie.swift in Sources */,
+				4637D9D8243E868100E854F6 /* MovieListWorker.swift in Sources */,
 				4627A69E2436768F00E1C3B7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +297,8 @@
 			files = (
 				4627A6C724367DD700E1C3B7 /* MockURLSessionDataTask.swift in Sources */,
 				4627A6C524367D6300E1C3B7 /* MockURLSession.swift in Sources */,
+				4637D9D6243E7E5A00E854F6 /* MovieListWorkerTests.swift in Sources */,
+				4637D9D2243E7C7800E854F6 /* MovieTests.swift in Sources */,
 				4627A6BF2436783500E1C3B7 /* ConnectorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,7 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MovieList/Info.plist;
+				INFOPLIST_FILE = MovieList/Base/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,7 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MovieList/Info.plist;
+				INFOPLIST_FILE = MovieList/Base/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

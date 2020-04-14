@@ -16,8 +16,8 @@ class Connector {
     }
     
     func makeRequest(url: URL, _ completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let dataTask = provider.dataTask(with: url) { (_, _, _) in
-            
+        let dataTask = provider.dataTask(with: url) { (data, response, error) in
+            completion(data, response, error)
         }
         dataTask.resume()
         return dataTask

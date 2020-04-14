@@ -27,6 +27,23 @@ class ConnectorTests: XCTestCase {
         url = nil
     }
     
+    // MARK: - Act
+    private func actMakeRequest(data: Data? = nil, response: URLResponse? = nil, error: Error? = nil) -> (data: Data?, response: URLResponse?, error: Error?) {
+        
+        var receivedData: Data?
+        var receivedResponse: URLResponse?
+        var receivedError: Error?
+        
+        let dataTask = sut.makeRequest(url: url) { (data, response, error) in
+            receivedData = data
+            receivedResponse = response
+            receivedError = error
+        } as! MockURLSessionDataTask
+        dataTask.completion(data, response, error)
+        
+        return (receivedData, receivedResponse, receivedError)
+    }
+    
     func testConnector_initializer() {
         XCTAssertNotNil(sut)
     }
@@ -49,5 +66,39 @@ class ConnectorTests: XCTestCase {
         
         // Assert
         XCTAssertTrue(dataTask.calledResume)
+    }
+    
+    func testConnector_makeRequest_receivesData() {
+        // Arrange
+        let expectedData: Data = #"{"name": "John"}"#.data(using: .utf8)!
+        
+        // Act
+        let result = actMakeRequest(data: expectedData)
+        
+        // Assert
+        XCTAssertEqual(result.data, expectedData)
+    }
+    
+    func testConnector_makesRequest_receivesResponse() {
+        // Arrange
+        let expectedResponse: URLResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        
+        // Act
+        let result = actMakeRequest(response: expectedResponse)
+
+        // Assert
+        XCTAssertEqual(result.response, expectedResponse)
+    }
+    
+    func testConnector_makesRequest_receivesError() {
+        // Arrange
+        let expectedError: NSError = NSError(domain: "TDD", code: 0, userInfo: nil)
+        
+        // Act
+        let result = actMakeRequest(error: expectedError)
+        
+        // Assert
+        let actualError = result.error as NSError?
+        XCTAssertEqual(actualError, expectedError)
     }
 }
