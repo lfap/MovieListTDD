@@ -8,8 +8,8 @@
 
 import Foundation
 
-
 typealias MovieResult = Result<[Movie], MovieListWorker.WorkerError>
+
 class MovieListWorker {
     private let connector: Connector
     
@@ -18,14 +18,45 @@ class MovieListWorker {
     }
     
     func fetchMovies(_ completion: @escaping (MovieResult) -> Void) -> URLSessionDataTask {
-        return connector.makeRequest(url: URL(string: "https://myapi.com/path")!) { (_, _, _) in
-            completion(.success([]))
+        return connector.makeRequest(url: URL(string: "https://myapi.com/path")!) { (data, response, _) in
+                
+            guard let httpResponse = response as? HTTPURLResponse else {
+                self.completesOnMainQueue(result: .failure(.invalidResponse), completion: completion)
+                return // Wait for it.
+            }
+            
+            guard httpResponse.statusCode == 200 else {
+                return // Wait for it.
+            }
+            
+            guard let data = data else {
+                return // Wait for it.
+            }
+            
+            do {
+                let movies = try self.parseMovies(data)
+                self.completesOnMainQueue(result: .success(movies), completion: completion)
+            } catch {
+                // Wait for it.
+            }
+        }
+    }
+    
+    private func parseMovies(_ data: Data) throws -> [Movie] {
+        let jsonDecoder = JSONDecoder()
+        let movies = try jsonDecoder.decode([Movie].self, from: data)
+        return movies
+    }
+    
+    private func completesOnMainQueue(result: MovieResult, completion: @escaping (MovieResult) -> Void) {
+        DispatchQueue.main.async {
+            completion(result)
         }
     }
 }
 
 extension MovieListWorker {
     enum WorkerError: Error {
-        
+        case invalidResponse
     }
 }
