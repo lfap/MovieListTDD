@@ -10,7 +10,11 @@ import Foundation
 
 typealias MovieResult = Result<[Movie], MovieListWorker.WorkerError>
 
-class MovieListWorker {
+protocol MovieListWorkerProtocol {
+    func fetchMovies(_ completion: @escaping (MovieResult) -> Void) -> URLSessionDataTask
+}
+
+class MovieListWorker: MovieListWorkerProtocol {
     private let connector: Connector
     
     init(connector: Connector = Connector()) {
