@@ -13,7 +13,7 @@ class MovieListPresenterTests: XCTestCase {
 
     var sut: MovieListPresenter!
     var worker: MockMovieListWorker!
-    var outputViewController: MovieListPresenterOutputDelegate!
+    var outputViewController: SpyViewController!
     
     override func setUp() {
         worker = MockMovieListWorker()
@@ -61,10 +61,56 @@ class MovieListPresenterTests: XCTestCase {
         // Assert
         XCTAssertTrue(worker.fetchMoviesCalled)
     }
+    
+    func testMovieListPresenter_fetchMovies_isCallingOutput() {
+        // Act
+        sut.fetchMovies()
+        worker.completion(.success([]))
+        
+        // Assert
+        XCTAssertTrue(outputViewController.didFetchMoviesSuccessfullyCalled)
+    }
+    
+    func testMovieListPresenter_fetchMovies_callsOutputPassingListOfMovieViewModel() {
+        // Arrange
+        let expectedList: [MovieViewModel] = MovieViewModel.viewModels
+        
+        // Act
+        sut.fetchMovies()
+        worker.completion(.success(Movie.movies))
+        
+        // Assert
+        XCTAssertEqual(outputViewController.viewModels, expectedList)
+    }
+    
+    func testMovieListPresenter_fetchMoviesWithError_callsOutputPassingErrorMessage() {
+        // Arrange
+        let expectedMessage: String = MovieListWorker.WorkerError.invalidJSON.presentableMessage
+        
+        // Act
+        sut.fetchMovies()
+        worker.completion(.failure(.invalidJSON))
+        
+        // Assert
+        XCTAssertEqual(outputViewController.errorMessage, expectedMessage)
+    }
 }
 
 extension MovieListPresenterTests {
+    
     class SpyViewController: MovieListPresenterOutputDelegate {
         
+        var didFetchMoviesSuccessfullyCalled: Bool = false
+        var viewModels: [MovieViewModel]!
+        var errorMessage: String!
+        
+        func didFetchMoviesSuccessfully(viewModels: [MovieViewModel]) {
+            didFetchMoviesSuccessfullyCalled = true
+            self.viewModels = viewModels
+        }
+        
+        func didFetchMovies(withErrorMessage errorMessage: String) {
+            self.errorMessage = errorMessage
+        }
     }
 }

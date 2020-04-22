@@ -11,6 +11,7 @@ import Foundation
 typealias MovieResult = Result<[Movie], MovieListWorker.WorkerError>
 
 protocol MovieListWorkerProtocol {
+    @discardableResult
     func fetchMovies(_ completion: @escaping (MovieResult) -> Void) -> URLSessionDataTask
 }
 
@@ -75,5 +76,13 @@ extension MovieListWorker {
         case invalidStatusCode
         case invalidData
         case invalidJSON
+        
+        var presentableMessage: String {
+            var message: String = ""
+            if case .invalidJSON = self {
+                message = "The server returned a different type of data from the expected."
+            }
+            return message
+        }
     }
 }

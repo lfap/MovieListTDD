@@ -19,8 +19,20 @@ class MovieListPresenter {
 
 extension MovieListPresenter: MovieListPresenterProtocol {
     func fetchMovies() {
-        worker.fetchMovies { _ in
+        worker.fetchMovies { [weak self] result in
+            guard let self = self else { return }
             
+            switch result {
+            case .success(let movies):
+                let viewModels = self.parseMoviesToViewModels(movies)
+                self.outputDelegate?.didFetchMoviesSuccessfully(viewModels: viewModels)
+            case .failure(let error):
+                self.outputDelegate?.didFetchMovies(withErrorMessage: error.presentableMessage)
+            }
         }
+    }
+    
+    private func parseMoviesToViewModels(_ movies: [Movie]) -> [MovieViewModel] {
+        movies.map(MovieViewModel.init)
     }
 }

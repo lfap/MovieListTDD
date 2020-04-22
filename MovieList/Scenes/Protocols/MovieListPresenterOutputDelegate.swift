@@ -9,5 +9,6 @@
 import Foundation
 
 protocol MovieListPresenterOutputDelegate: AnyObject {
-    
+    func didFetchMoviesSuccessfully(viewModels: [MovieViewModel])
+    func didFetchMovies(withErrorMessage errorMessage: String)
 }
