@@ -138,4 +138,18 @@ class MovieListWorkerTests: XCTestCase {
         // Assert
         assert(try result.get(), toThrow: expectedError)
     }
+    
+    func testMovieListWorker_fetchMoviesWithInvalidJSONFormat_completesWithInvalidJSONError() {
+        // Arrange
+        let expectedError = MovieListWorker.WorkerError.invalidJSON
+        let response = HTTPURLResponse(statusCode: 200)
+        let data = Bundle.loadJSON(fileName: "invalid_movies")
+        
+        // Act
+        let result = actFetchMovies(data: data, response: response)
+        
+        // Assert
+        assert(try result.get(), toThrow: expectedError)
+    }
+    
 }

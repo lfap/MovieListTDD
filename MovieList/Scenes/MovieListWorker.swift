@@ -46,7 +46,7 @@ class MovieListWorker {
                 let movies = try self.parseMovies(data)
                 self.completesOnMainQueue(result: .success(movies), completion: completion)
             } catch {
-                // Wait for it.
+                self.completesOnMainQueue(result: .failure(.invalidJSON), completion: completion)
             }
         }
     }
@@ -70,5 +70,6 @@ extension MovieListWorker {
         case invalidResponse
         case invalidStatusCode
         case invalidData
+        case invalidJSON
     }
 }
