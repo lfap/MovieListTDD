@@ -38,7 +38,8 @@ class MovieListWorker {
             }
             
             guard let data = data else {
-                return // Wait for it.
+                self.completesOnMainQueue(result: .failure(.invalidData), completion: completion)
+                return
             }
             
             do {
@@ -68,5 +69,6 @@ extension MovieListWorker {
         case undefined(description: String)
         case invalidResponse
         case invalidStatusCode
+        case invalidData
     }
 }

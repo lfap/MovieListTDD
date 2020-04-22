@@ -126,4 +126,16 @@ class MovieListWorkerTests: XCTestCase {
         // Assert
         assert(try result.get(), toThrow: expectedError)
     }
+    
+    func testMovieListWorker_fetchMoviesWithInvalidData_completesWithInvalidDataError() {
+        // Arrange
+        let expectedError = MovieListWorker.WorkerError.invalidData
+        let response = HTTPURLResponse(statusCode: 200)
+        
+        // Act
+        let result = actFetchMovies(response: response)
+        
+        // Assert
+        assert(try result.get(), toThrow: expectedError)
+    }
 }
