@@ -33,7 +33,8 @@ class MovieListWorker {
             }
             
             guard httpResponse.statusCode == 200 else {
-                return // Wait for it.
+                self.completesOnMainQueue(result: .failure(.invalidStatusCode), completion: completion)
+                return
             }
             
             guard let data = data else {
@@ -66,5 +67,6 @@ extension MovieListWorker {
     enum WorkerError: Error, Equatable {
         case undefined(description: String)
         case invalidResponse
+        case invalidStatusCode
     }
 }

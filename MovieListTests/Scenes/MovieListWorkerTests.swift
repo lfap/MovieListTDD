@@ -114,4 +114,16 @@ class MovieListWorkerTests: XCTestCase {
         // Assert - With XCTestCase+Extension
         assert(try result.get(), toThrow: expectedError)
     }
+    
+    func testMovieListWorker_fetchMoviesWithInvalidStatusCode_completesWithInvalidStatusCodeError() {
+        // Arrange
+        let expectedError = MovieListWorker.WorkerError.invalidStatusCode
+        let response = HTTPURLResponse(statusCode: 404)
+        
+        // Act
+        let result = actFetchMovies(response: response)
+        
+        // Assert
+        assert(try result.get(), toThrow: expectedError)
+    }
 }
