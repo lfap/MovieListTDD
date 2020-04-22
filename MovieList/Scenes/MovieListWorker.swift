@@ -18,11 +18,18 @@ class MovieListWorker {
     }
     
     func fetchMovies(_ completion: @escaping (MovieResult) -> Void) -> URLSessionDataTask {
-        return connector.makeRequest(url: URL(string: "https://myapi.com/path")!) { (data, response, _) in
+        return connector.makeRequest(url: URL(string: "https://myapi.com/path")!) { (data, response, error) in
                 
+            guard error == nil else {
+                let description = error!.localizedDescription
+                let error: WorkerError = .undefined(description: description)
+                self.completesOnMainQueue(result: .failure(error), completion: completion)
+                return
+            }
+            
             guard let httpResponse = response as? HTTPURLResponse else {
                 self.completesOnMainQueue(result: .failure(.invalidResponse), completion: completion)
-                return // Wait for it.
+                return
             }
             
             guard httpResponse.statusCode == 200 else {
@@ -56,7 +63,8 @@ class MovieListWorker {
 }
 
 extension MovieListWorker {
-    enum WorkerError: Error {
+    enum WorkerError: Error, Equatable {
+        case undefined(description: String)
         case invalidResponse
     }
 }

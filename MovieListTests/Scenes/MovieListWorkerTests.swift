@@ -31,6 +31,26 @@ class MovieListWorkerTests: XCTestCase {
         return movies
     }
     
+    // MARK: - Act
+    private func actFetchMovies(data: Data? = nil, response: URLResponse? = nil, error: Error? = nil) -> MovieResult {
+        let exp = expectation(description: "Expect to fetch movies")
+        var thread: Thread!
+        var receivedResult: MovieResult!
+        
+        let dataTask = sut.fetchMovies { movieResult in
+            thread = Thread.current
+            receivedResult = movieResult
+            exp.fulfill()
+        } as! MockURLSessionDataTask
+        dataTask.completion(data, response, error)
+        
+        wait(for: [exp], timeout: 0.2)
+        XCTAssertTrue(thread.isMainThread)
+        
+        return receivedResult
+    }
+    
+    // MARK: - Tests
     func testMovieListWorker_initilizer() {
         XCTAssertNotNil(sut)
     }
@@ -44,83 +64,54 @@ class MovieListWorkerTests: XCTestCase {
     }
     
     func testMovieListWorker_fetchMovies_completesWithResultType() {
-        // Arrange
-        typealias expectedType = Result<[Movie], MovieListWorker.WorkerError>
-        var receivedResult: Any!
-        let exp = expectation(description: "Expect to fetch movies")
-    
         // Act
-        let dataTask = sut.fetchMovies { result in
-            receivedResult = result
-            exp.fulfill()
-        } as! MockURLSessionDataTask
-        dataTask.completion(nil, nil, nil)
+        let result = actFetchMovies()
         
         // Assert
-        wait(for: [exp], timeout: 0.2)
-        XCTAssertTrue(receivedResult is expectedType)
-    }
-    
-    func testMovieListWorker_fetchMovies_completesOnMainQueue() {
-        // Arrange
-        let exp = expectation(description: "Expect to fetch movies on main queue")
-        var thread: Thread!
-        
-        // Act
-        let dataTask = sut.fetchMovies { _ in
-            thread = Thread.current
-            exp.fulfill()
-        } as! MockURLSessionDataTask
-        dataTask.completion(nil, nil, nil)
-        
-        // Assert
-        wait(for: [exp], timeout: 0.2)
-        XCTAssertTrue(thread.isMainThread)
+        XCTAssertTrue((result as Any) is MovieResult)
     }
     
     func testMovieListWorker_fetchMoviesWithStatus200_completesWithMovieList() {
         // Arrange
         let data = Bundle.loadJSON(fileName: "valid_movies")
         let response = HTTPURLResponse(statusCode: 200)
-        let exp = XCTestExpectation(description: "Expects to fetch movies")
         let expectedMovies = parseMovies(data)
         
-        var receivedResult: MovieResult!
         var receivedMovies: [Movie]!
         
         // Act
-        let dataTask = sut.fetchMovies { result in
-            receivedResult = result
-            exp.fulfill()
-        } as! MockURLSessionDataTask
-        dataTask.completion(data, response, nil)
+        let result = actFetchMovies(data: data, response: response)
         
         // Assert
-        wait(for: [exp], timeout: 0.2)
-        XCTAssertNoThrow(receivedMovies = try receivedResult.get())
+        XCTAssertNoThrow(receivedMovies = try result.get())
         XCTAssertEqual(receivedMovies, expectedMovies)
     }
     
-    func testMovieListWorker_fetchMoviesWithInvalidResponse_completesWithError() {
+    func testMovieListWorker_fetchMoviesWithNonNilError_completesWithUndefinedError() {
         // Arrange
-        let exp = XCTestExpectation(description: "Expect to fetch movies with error")
-        let expectedError = MovieListWorker.WorkerError.invalidResponse
-        
-        var receivedResult: MovieResult!
+        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: "Undefined error description"]
+        let error = NSError(domain: "tdd", code: 0, userInfo: userInfo)
+        let expectedError = MovieListWorker.WorkerError.undefined(description: error.localizedDescription)
         var receivedError: MovieListWorker.WorkerError!
-        
+
         // Act
-        let dataTask = sut.fetchMovies { result in
-            receivedResult = result
-            exp.fulfill()
-        } as! MockURLSessionDataTask
-        dataTask.completion(nil, nil, nil)
+        let result = actFetchMovies(error: error)
         
-        // Assert
-        wait(for: [exp], timeout: 0.2)
-        XCTAssertThrowsError(try receivedResult.get()) {
+        // Assert - Without XCTestCase+Extension
+        XCTAssertThrowsError(try result.get()) {
             receivedError = $0 as? MovieListWorker.WorkerError
         }
         XCTAssertEqual(receivedError, expectedError)
+    }
+    
+    func testMovieListWorker_fetchMoviesWithInvalidResponse_completesWithInvalidResponseError() {
+        // Arrange
+        let expectedError = MovieListWorker.WorkerError.invalidResponse
+        
+        // Act
+        let result = actFetchMovies()
+        
+        // Assert - With XCTestCase+Extension
+        assert(try result.get(), toThrow: expectedError)
     }
 }
