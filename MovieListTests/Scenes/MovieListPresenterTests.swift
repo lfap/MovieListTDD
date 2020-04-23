@@ -24,18 +24,12 @@ class MovieListPresenterTests: XCTestCase {
 
     override func tearDown() {
         sut = nil
+        worker = nil
+        outputViewController = nil
     }
     
     func testMovieListPresenter_initializer() {
         XCTAssertNotNil(sut)
-    }
-    
-    func testMovieListPresenter_initilizerWithWorker() {
-        // Arrange
-        let worker = MockMovieListWorker()
-        
-        // Act & Assert
-        sut = MovieListPresenter(worker: worker)
     }
     
     func testMovieListPresenter_setOutputDelegate() {

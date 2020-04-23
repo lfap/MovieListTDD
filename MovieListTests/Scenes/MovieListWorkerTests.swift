@@ -151,5 +151,4 @@ class MovieListWorkerTests: XCTestCase {
         // Assert
         assert(try result.get(), toThrow: expectedError)
     }
-    
 }
