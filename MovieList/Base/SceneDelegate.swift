@@ -8,6 +8,10 @@
 
 import UIKit
 
+var isRunningTests: Bool {
+    NSClassFromString("XCTest") != nil
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -17,7 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         let movieListViewController = MovieListViewController()
-        self.window?.rootViewController = movieListViewController
-        self.window?.makeKeyAndVisible()
+        let presenter = MovieListPresenter()
+        
+        movieListViewController.presenter = presenter
+        presenter.outputDelegate = movieListViewController
+        
+        if isRunningTests == false {
+            self.window?.rootViewController = movieListViewController
+            self.window?.makeKeyAndVisible()
+        }
     }
 }

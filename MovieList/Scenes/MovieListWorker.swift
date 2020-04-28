@@ -23,7 +23,7 @@ class MovieListWorker: MovieListWorkerProtocol {
     }
     
     func fetchMovies(_ completion: @escaping (MovieResult) -> Void) -> URLSessionDataTask {
-        return connector.makeRequest(url: URL(string: "https://myapi.com/path")!) { (data, response, error) in
+        return connector.makeRequest(url: URL(string: "http://www.mocky.io/v2/5ea87c142d00006d5f3a3fe7")!) { (data, response, error) in
                 
             guard error == nil else {
                 let description = error!.localizedDescription

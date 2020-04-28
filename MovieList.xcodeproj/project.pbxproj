@@ -38,8 +38,8 @@
 		467EB5C82447ECFA007D328C /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467EB5C32447ECFA007D328C /* XCTestCase+Extension.swift */; };
 		467EB5CB2447ED46007D328C /* DelayedMockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467EB5CA2447ED46007D328C /* DelayedMockURLSession.swift */; };
 		46B703F42450F5800016E210 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B703F32450F5800016E210 /* MovieListViewController.swift */; };
-		46B703F62450F6CC0016E210 /* MockMovieListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B703F52450F6CC0016E210 /* MockMovieListPresenter.swift */; };
 		46B703F82451DC240016E210 /* MovieListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B703F72451DC240016E210 /* MovieListViewController.xib */; };
+		46B7042224578CA20016E210 /* MockMovieListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7042124578CA20016E210 /* MockMovieListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +88,8 @@
 		467EB5C32447ECFA007D328C /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		467EB5CA2447ED46007D328C /* DelayedMockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedMockURLSession.swift; sourceTree = "<group>"; };
 		46B703F32450F5800016E210 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
-		46B703F52450F6CC0016E210 /* MockMovieListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieListPresenter.swift; sourceTree = "<group>"; };
 		46B703F72451DC240016E210 /* MovieListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListViewController.xib; sourceTree = "<group>"; };
+		46B7042124578CA20016E210 /* MockMovieListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,10 +131,10 @@
 		4627A69A2436768F00E1C3B7 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				4637D9CC243E7C3100E854F6 /* Base */,
 				4637D9CE243E7C6300E854F6 /* Models */,
 				4637D9CD243E7C5C00E854F6 /* Scenes */,
 				4627A6C024367B1F00E1C3B7 /* Networking */,
-				4637D9CC243E7C3100E854F6 /* Base */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -142,10 +142,10 @@
 		4627A6B4243676CB00E1C3B7 /* MovieListTests */ = {
 			isa = PBXGroup;
 			children = (
+				46B704242458B8900016E210 /* Base */,
 				4637D9D0243E7C7000E854F6 /* Models */,
 				4637D9CF243E7C6B00E854F6 /* Scenes */,
 				4627A6BD243677EC00E1C3B7 /* Networking */,
-				4627A6B7243676CB00E1C3B7 /* Info.plist */,
 			);
 			path = MovieListTests;
 			sourceTree = "<group>";
@@ -171,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				4627A6C424367D6300E1C3B7 /* MockURLSession.swift */,
-				4627A6C624367DD700E1C3B7 /* MockURLSessionDataTask.swift */,
 				467EB5CA2447ED46007D328C /* DelayedMockURLSession.swift */,
+				4627A6C624367DD700E1C3B7 /* MockURLSessionDataTask.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -254,7 +254,7 @@
 			children = (
 				467EB5BA2447ECE5007D328C /* Resources */,
 				46673C312450D5EF00DC8083 /* MockMovieListWorker.swift */,
-				46B703F52450F6CC0016E210 /* MockMovieListPresenter.swift */,
+				46B7042124578CA20016E210 /* MockMovieListPresenter.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -279,6 +279,14 @@
 				46673C472450F42C00DC8083 /* UIStoryboard+Helper.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		46B704242458B8900016E210 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4627A6B7243676CB00E1C3B7 /* Info.plist */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,7 +425,7 @@
 				46673C412450EC3300DC8083 /* MovieViewModel+Extesnion.swift in Sources */,
 				467EB5CB2447ED46007D328C /* DelayedMockURLSession.swift in Sources */,
 				46673C2E2450CC9600DC8083 /* MovieListPresenterTests.swift in Sources */,
-				46B703F62450F6CC0016E210 /* MockMovieListPresenter.swift in Sources */,
+				46B7042224578CA20016E210 /* MockMovieListPresenter.swift in Sources */,
 				467EB5C52447ECFA007D328C /* HTTPURLResponse+Extension.swift in Sources */,
 				4627A6BF2436783500E1C3B7 /* ConnectorTests.swift in Sources */,
 			);
@@ -599,7 +607,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MovieListTests/Info.plist;
+				INFOPLIST_FILE = MovieListTests/Base/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -620,7 +628,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MovieListTests/Info.plist;
+				INFOPLIST_FILE = MovieListTests/Base/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

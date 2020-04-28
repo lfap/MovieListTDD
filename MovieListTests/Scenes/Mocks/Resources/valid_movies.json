@@ -1,38 +1,134 @@
 [
-  {
-    "name": "The Fast and the Furious",
-    "year": 2001
-  },
-  {
-    "name": "2 Fast 2 Furious",
-    "year": 2003
-  },
-  {
-    "name": "The Fast and the Furious: Tokyo Drift",
-    "year": 2006
-  },
-  {
-    "name": "Fast & Furious",
-    "year": 2009
-  },
-  {
-    "name": "Fast Five",
-    "year": 2011
-  },
-  {
-    "name": "Fast & Furious 6",
-    "year": 2013
-  },
-  {
-    "name": "Furious 7",
-    "year": 2015
-  },
-  {
-    "name": "The Fate of Furious",
-    "year": 2017
-  },
-  {
-    "name": "Fast & Furious 9",
-    "year": 2021
-  }
+    {
+        "name": "The Fast and the Furious",
+        "year": 2001
+    },
+    {
+        "name": "2 Fast 2 Furious",
+        "year": 2003
+    },
+    {
+        "name": "The Fast and the Furious: Tokyo Drift",
+        "year": 2006
+    },
+    {
+        "name": "Iron Man",
+        "year": 2008
+    },
+    {
+        "name": "The Incredible Hulk",
+        "year": 2008
+    },
+    {
+        "name": "Fast & Furious",
+        "year": 2009
+    },
+    {
+        "name": "Iron Man 2",
+        "year": 2010
+    },
+    {
+        "name": "Fast Five",
+        "year": 2011
+    },
+    {
+        "name": "Thor",
+        "year": 2011
+    },
+    {
+        "name": "Captain America: The First Avenger",
+        "year": 2011
+    },
+    {
+        "name": "Avenger",
+        "year": 2012
+    },
+    {
+        "name": "Fast & Furious 6",
+        "year": 2013
+    },
+    {
+        "name": "Iron Man 3",
+        "year": 2013
+    },
+    {
+        "name": "Thor: The Dark World",
+        "year": 2013
+    },
+    {
+        "name": "Captain America: The Winter Soldier",
+        "year": 2014
+    },
+    {
+        "name": "Guardians of the Galaxy",
+        "year": 2014
+    },
+    {
+        "name": "Avengers: Age of Ultron",
+        "year": 2015
+    },
+    {
+        "name": "Ant-Man",
+        "year": 2015
+    },
+    {
+        "name": "Furious 7",
+        "year": 2015
+    },
+    {
+        "name": "Captain America: Civil War",
+        "year": 2016
+    },
+    {
+        "name": "Doctor Strange",
+        "year": 2016
+    },
+    {
+        "name": "Guardians of the Galaxy Vol. 2",
+        "year": 2017
+    },
+    {
+        "name": "Spider-Man: Homecoming",
+        "year": 2017
+    },
+    {
+        "name": "The Fate of Furious",
+        "year": 2017
+    },
+    {
+        "name": "Thor: Ragnarok",
+        "year": 2017
+    },
+    {
+        "name": "Black Panther",
+        "year": 2018
+    },
+    {
+        "name": "Avengers: Infinity War",
+        "year": 2018
+    },
+    {
+        "name": "Ant-Man and the Wasp",
+        "year": 2018
+    },
+    {
+        "name": "Captain Marvel",
+        "year": 2019
+    },
+    {
+        "name": "Avengers: Endgame",
+        "year": 2019
+    },
+    {
+        "name": "Spider-Man: Far From Home",
+        "year": 2019
+    },
+    {
+        "name": "Black Widow",
+        "year": 2020
+    },
+    {
+        "name": "Fast & Furious 9",
+        "year": 2021
+    }
 ]

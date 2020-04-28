@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieListViewController" customModule="MovieList" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="K0Z-Zi-VDm" id="9HT-mB-DMJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Qq7-p5-ocP"/>
             </connections>
         </placeholder>
@@ -16,9 +17,20 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K0Z-Zi-VDm">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="K0Z-Zi-VDm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Lg-WP-PxV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="K0Z-Zi-VDm" secondAttribute="trailing" id="Ipf-hh-pGL"/>
+                <constraint firstAttribute="bottom" secondItem="K0Z-Zi-VDm" secondAttribute="bottom" id="ihr-s1-YEK"/>
+                <constraint firstItem="K0Z-Zi-VDm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uEw-il-YJL"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="139" y="118"/>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
         </view>
     </objects>
 </document>
